@@ -2,14 +2,14 @@ FROM node:16
 
 WORKDIR /app
 
-RUN npm install -g npm-run-all serve
+RUN npm install -g npm-run-all serve yarn
 
 COPY package.json .
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 CMD [ "npm-run-all", "--parallel", "server:**" ]
