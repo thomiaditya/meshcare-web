@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Download() {
+  const [email, setEmail] = useState("");
+
+  const handleClick = (e) => {
+
+    // Check if email is valid
+    if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+      alert("Email is not valid!");
+      return;
+    }
+
+    fetch("http://localhost:3000/api/waiting-list", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        alert("Waiting list ditambahkan");
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       {/* <!-- *****DOWNLOAD***** --> */}
@@ -20,23 +47,31 @@ export default function Download() {
             </div>
 
             <div className="col-lg-4 offset-lg-4 ">
-              <form id="search" action="#" method="GET">
+              <form id="search">
                 <div className="row">
                   <div className="col-lg-5 col-sm-4">
                     <fieldset>
                       <input
-                        type="address"
+                        type="email"
                         name="address"
                         className="email"
                         placeholder="Alamat Email..."
                         autocomplete="on"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                         required
                       />
                     </fieldset>
                   </div>
                   <div className="col-lg-7 col-sm-6">
                     <fieldset>
-                      <button type="submit" className="main-button">
+                      <button
+                        onClick={() => handleClick()}
+                        type="button"
+                        className="main-button"
+                      >
                         Unduh
                       </button>
                     </fieldset>
