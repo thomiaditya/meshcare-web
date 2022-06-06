@@ -2,7 +2,7 @@ FROM node:16
 
 WORKDIR /app
 
-RUN npm install -g npm-run-all serve yarn
+RUN npm install -g npm-run-all serve
 
 COPY package.json .
 
