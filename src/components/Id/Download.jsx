@@ -11,7 +11,7 @@ export default function Download() {
       return;
     }
 
-    fetch("http://api:3200/api/waiting-list", {
+    fetch(`${process.env.BACKEND_URL}/api/waiting-list`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
