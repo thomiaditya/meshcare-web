@@ -11,19 +11,22 @@ export default function Download() {
       return;
     }
 
-    fetch(`${process.env.BACKEND_URL}/api/waiting-list`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/waiting-list`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Allow-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
       },
       body: JSON.stringify({
-        email,
+        email: email,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json()
+      })
       .then((data) => {
-        // console.log(data);
-        alert("Waiting list ditambahkan");
+        alert("Waiting list successfully added");
       })
       .catch((err) => console.log(err));
   };
@@ -47,7 +50,7 @@ export default function Download() {
             </div>
 
             <div className="col-lg-4 offset-lg-4 ">
-              <form id="search">
+              <form id="search" onSubmit={() => {}}>
                 <div className="row">
                   <div className="col-lg-5 col-sm-4">
                     <fieldset>

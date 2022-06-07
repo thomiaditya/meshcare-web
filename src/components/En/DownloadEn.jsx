@@ -4,26 +4,30 @@ export default function DownloadEn() {
   const [email, setEmail] = useState("");
 
   const handleClick = (e) => {
-    
+
     // Check if email is valid
     if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
       alert("Email is not valid!");
       return;
     }
 
+    console.log(email)
 
-    fetch(`${process.env.BACKEND_URL}/api/waiting-list`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/waiting-list`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Allow-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST",
       },
       body: JSON.stringify({
-        email,
+        email: email,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        return res.json()
+      })
       .then((data) => {
-        // console.log(data);
         alert("Waiting list successfully added");
       })
       .catch((err) => console.log(err));
@@ -48,7 +52,7 @@ export default function DownloadEn() {
             </div>
 
             <div className="col-lg-4 offset-lg-4 ">
-              <form id="search">
+              <form id="search" onSubmit={(e) => {e.preventDefault()}}>
                 <div className="row">
                   <div className="col-lg-5 col-sm-4">
                     <fieldset>
