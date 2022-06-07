@@ -68,9 +68,9 @@ export default function HeaderId() {
                     </div>
                   </li>
                 </ul>
-                <a className="menu-trigger">
+                <Link to="/" className="menu-trigger">
                   <span>Menu</span>
-                </a>
+                </Link>
                 {/* <!-- ***** Menu End ***** --> */}
               </nav>
             </div>
