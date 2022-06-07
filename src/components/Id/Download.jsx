@@ -4,7 +4,6 @@ export default function Download() {
   const [email, setEmail] = useState("");
 
   const handleClick = (e) => {
-
     // Check if email is valid
     if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
       alert("Email is not valid!");
@@ -23,7 +22,7 @@ export default function Download() {
       }),
     })
       .then((res) => {
-        return res.json()
+        return res.json();
       })
       .then((data) => {
         alert("Waiting list successfully added");
@@ -50,7 +49,13 @@ export default function Download() {
             </div>
 
             <div className="col-lg-4 offset-lg-4 ">
-              <form id="search" onSubmit={() => {}}>
+              <form
+                id="search"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleClick(e);
+                }}
+              >
                 <div className="row">
                   <div className="col-lg-5 col-sm-4">
                     <fieldset>
