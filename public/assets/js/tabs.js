@@ -1,6 +1,6 @@
 /*! jQuery UI - v1.11.2 - 2014-10-16
 * http://jqueryui.com
-* Includes: core.js, widget.js, mouse.js, position.js, accordion.js, autocomplete.js, button.js, datepicker.js, dialog.js, draggable.js, droppable.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js, menu.js, progressbar.js, resizable.js, selectable.js, selectmenu.js, slider.js, sortable.js, spinner.js, tabs.js, tooltip.js
+* Includes: core.js, widget.js, mouse.js, position.js, accordion.js, autoComplete.js, button.js, datepicker.js, dialog.js, draggable.js, droppable.js, effect.js, effect-blind.js, effect-bounce.js, effect-clip.js, effect-drop.js, effect-explode.js, effect-fade.js, effect-fold.js, effect-highlight.js, effect-puff.js, effect-pulsate.js, effect-scale.js, effect-shake.js, effect-size.js, effect-slide.js, effect-transfer.js, menu.js, progressbar.js, resizable.js, selectable.js, selectmenu.js, slider.js, sortable.js, spinner.js, tabs.js, tooltip.js
 * Copyright 2014 jQuery Foundation and other contributors; Licensed MIT */
 
 (function( factory ) {
@@ -2757,11 +2757,11 @@ var menu = $.widget( "ui.menu", {
  * Released under the MIT license.
  * http://jquery.org/license
  *
- * http://api.jqueryui.com/autocomplete/
+ * http://api.jqueryui.com/autoComplete/
  */
 
 
-$.widget( "ui.autocomplete", {
+$.widget( "ui.autoComplete", {
 	version: "1.11.2",
 	defaultElement: "<input>",
 	options: {
@@ -2815,8 +2815,8 @@ $.widget( "ui.autocomplete", {
 		this.isNewMenu = true;
 
 		this.element
-			.addClass( "ui-autocomplete-input" )
-			.attr( "autocomplete", "off" );
+			.addClass( "ui-autoComplete-input" )
+			.attr( "autoComplete", "off" );
 
 		this._on( this.element, {
 			keydown: function( event ) {
@@ -2937,7 +2937,7 @@ $.widget( "ui.autocomplete", {
 
 		this._initSource();
 		this.menu = $( "<ul>" )
-			.addClass( "ui-autocomplete ui-front" )
+			.addClass( "ui-autoComplete ui-front" )
 			.appendTo( this._appendTo() )
 			.menu({
 				// disable ARIA support, the live region takes care of that
@@ -2961,7 +2961,7 @@ $.widget( "ui.autocomplete", {
 				// clicking on the scrollbar causes focus to shift to the body
 				// but we can't detect a mouseup or a click immediately afterward
 				// so we have to track the next mousedown and close the menu if
-				// the user clicks somewhere outside of the autocomplete
+				// the user clicks somewhere outside of the autoComplete
 				var menuElement = this.menu.element[ 0 ];
 				if ( !$( event.target ).closest( ".ui-menu-item" ).length ) {
 					this._delay(function() {
@@ -2993,7 +2993,7 @@ $.widget( "ui.autocomplete", {
 					}
 				}
 
-				item = ui.item.data( "ui-autocomplete-item" );
+				item = ui.item.data( "ui-autoComplete-item" );
 				if ( false !== this._trigger( "focus", event, { item: item } ) ) {
 					// use value to match what will end up in the input, if it was a key event
 					if ( event.originalEvent && /^key/.test( event.originalEvent.type ) ) {
@@ -3009,7 +3009,7 @@ $.widget( "ui.autocomplete", {
 				}
 			},
 			menuselect: function( event, ui ) {
-				var item = ui.item.data( "ui-autocomplete-item" ),
+				var item = ui.item.data( "ui-autoComplete-item" ),
 					previous = this.previous;
 
 				// only trigger when focus was lost (click on menu)
@@ -3045,12 +3045,12 @@ $.widget( "ui.autocomplete", {
 			.addClass( "ui-helper-hidden-accessible" )
 			.appendTo( this.document[ 0 ].body );
 
-		// turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
+		// turning off autoComplete prevents the browser from remembering the
+		// value when navigating through history, so we re-enable autoComplete
 		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
-				this.element.removeAttr( "autocomplete" );
+				this.element.removeAttr( "autoComplete" );
 			}
 		});
 	},
@@ -3058,8 +3058,8 @@ $.widget( "ui.autocomplete", {
 	_destroy: function() {
 		clearTimeout( this.searching );
 		this.element
-			.removeClass( "ui-autocomplete-input" )
-			.removeAttr( "autocomplete" );
+			.removeClass( "ui-autoComplete-input" )
+			.removeAttr( "autoComplete" );
 		this.menu.element.remove();
 		this.liveRegion.remove();
 	},
@@ -3103,7 +3103,7 @@ $.widget( "ui.autocomplete", {
 		if ( $.isArray( this.options.source ) ) {
 			array = this.options.source;
 			this.source = function( request, response ) {
-				response( $.ui.autocomplete.filter( array, request.term ) );
+				response( $.ui.autoComplete.filter( array, request.term ) );
 			};
 		} else if ( typeof this.options.source === "string" ) {
 			url = this.options.source;
@@ -3163,7 +3163,7 @@ $.widget( "ui.autocomplete", {
 
 	_search: function( value ) {
 		this.pending++;
-		this.element.addClass( "ui-autocomplete-loading" );
+		this.element.addClass( "ui-autoComplete-loading" );
 		this.cancelSearch = false;
 
 		this.source( { term: value }, this._response() );
@@ -3179,7 +3179,7 @@ $.widget( "ui.autocomplete", {
 
 			this.pending--;
 			if ( !this.pending ) {
-				this.element.removeClass( "ui-autocomplete-loading" );
+				this.element.removeClass( "ui-autoComplete-loading" );
 			}
 		}, this );
 	},
@@ -3273,7 +3273,7 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_renderItemData: function( ul, item ) {
-		return this._renderItem( ul, item ).data( "ui-autocomplete-item", item );
+		return this._renderItem( ul, item ).data( "ui-autoComplete-item", item );
 	},
 
 	_renderItem: function( ul, item ) {
@@ -3316,12 +3316,12 @@ $.widget( "ui.autocomplete", {
 	}
 });
 
-$.extend( $.ui.autocomplete, {
+$.extend( $.ui.autoComplete, {
 	escapeRegex: function( value ) {
 		return value.replace( /[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&" );
 	},
 	filter: function( array, term ) {
-		var matcher = new RegExp( $.ui.autocomplete.escapeRegex( term ), "i" );
+		var matcher = new RegExp( $.ui.autoComplete.escapeRegex( term ), "i" );
 		return $.grep( array, function( value ) {
 			return matcher.test( value.label || value.value || value );
 		});
@@ -3331,7 +3331,7 @@ $.extend( $.ui.autocomplete, {
 // live region extension, adding a `messages` option
 // NOTE: This is an experimental API. We are still investigating
 // a full solution for string manipulation and internationalization.
-$.widget( "ui.autocomplete", $.ui.autocomplete, {
+$.widget( "ui.autoComplete", $.ui.autoComplete, {
 	options: {
 		messages: {
 			noResults: "No search results.",
@@ -3358,7 +3358,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 	}
 });
 
-var autocomplete = $.ui.autocomplete;
+var autoComplete = $.ui.autoComplete;
 
 
 /*!
@@ -12269,7 +12269,7 @@ var selectmenu = $.widget( "ui.selectmenu", {
 			id: this.ids.button,
 			role: "combobox",
 			"aria-expanded": "false",
-			"aria-autocomplete": "list",
+			"aria-autoComplete": "list",
 			"aria-owns": this.ids.menu,
 			"aria-haspopup": "true"
 		})
@@ -14830,12 +14830,12 @@ var spinner = $.widget( "ui.spinner", {
 		this._on( this._events );
 		this._refresh();
 
-		// turning off autocomplete prevents the browser from remembering the
-		// value when navigating through history, so we re-enable autocomplete
+		// turning off autoComplete prevents the browser from remembering the
+		// value when navigating through history, so we re-enable autoComplete
 		// if the page is unloaded before the widget is destroyed. #7790
 		this._on( this.window, {
 			beforeunload: function() {
-				this.element.removeAttr( "autocomplete" );
+				this.element.removeAttr( "autoComplete" );
 			}
 		});
 	},
@@ -14958,7 +14958,7 @@ var spinner = $.widget( "ui.spinner", {
 	_draw: function() {
 		var uiSpinner = this.uiSpinner = this.element
 			.addClass( "ui-spinner-input" )
-			.attr( "autocomplete", "off" )
+			.attr( "autoComplete", "off" )
 			.wrap( this._uiSpinnerHtml() )
 			.parent()
 				// add buttons
@@ -15217,7 +15217,7 @@ var spinner = $.widget( "ui.spinner", {
 		this.element
 			.removeClass( "ui-spinner-input" )
 			.prop( "disabled", false )
-			.removeAttr( "autocomplete" )
+			.removeAttr( "autoComplete" )
 			.removeAttr( "role" )
 			.removeAttr( "aria-valuemin" )
 			.removeAttr( "aria-valuemax" )

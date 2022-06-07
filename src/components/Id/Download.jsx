@@ -56,7 +56,7 @@ export default function Download() {
                         name="address"
                         className="email"
                         placeholder="Alamat Email..."
-                        autocomplete="on"
+                        autoComplete="on"
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);

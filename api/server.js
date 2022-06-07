@@ -3,8 +3,10 @@ const app = express();
 const port = 3200;
 const cors = require("cors");
 const mongodb = require("mongodb");
+const morgan = require("morgan");
 
-// Enable CORS
+// Morgan is a logger middleware for Express.
+app.use(morgan("dev")); 
 
 // Enable body parsing
 app.use(express.json());

@@ -73,7 +73,7 @@ export default function ContactEn() {
                               name="name"
                               id="name"
                               placeholder="Name"
-                              autocomplete="on"
+                              autoComplete="on"
                               required
                             />
                           </fieldset>
@@ -93,7 +93,7 @@ export default function ContactEn() {
                               name="subject"
                               id="subject"
                               placeholder="Subject"
-                              autocomplete="on"
+                              autoComplete="on"
                             />
                           </fieldset>
                         </div>

@@ -10,10 +10,12 @@ const DefaultHome = () => {
 
   useEffect(() => {
     if (localStorage.getItem("lang") === "en") {
+      // eslint-disable-next-line
       navigate("/en");
     }
 
     if (localStorage.getItem("lang") === "id") {
+      // eslint-disable-next-line
       navigate("/id");
     }
   }, []);
