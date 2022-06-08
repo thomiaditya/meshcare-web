@@ -10,6 +10,6 @@ RUN yarn install
 
 COPY . .
 
-RUN yarn build:micro
+RUN yarn build
 
 CMD [ "serve", "-s", "build" ]
