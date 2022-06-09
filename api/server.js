@@ -29,7 +29,12 @@ client.connect((err) => {
   console.log("Connected to MongoDB");
 });
 
-app.use(cors());
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+  }
+
+app.use(cors(corsOptions));
 
 // Add a new patient to the waiting list
 app.post("/api/waiting-list", (req, res) => {
@@ -51,6 +56,6 @@ app.post("/api/waiting-list", (req, res) => {
 });
 
 // Listen on port 3000
-app.listen(port, () => {
-  console.log(`Listening on port http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Listening on port http://0.0.0.0:${port}`);
 });
