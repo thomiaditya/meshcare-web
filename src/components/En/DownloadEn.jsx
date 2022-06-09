@@ -12,7 +12,7 @@ export default function DownloadEn() {
 
     console.log(email);
 
-    fetch(`${REACT_APP_BACKEND_URL}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
