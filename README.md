@@ -18,7 +18,7 @@ The Meshcare Web application is a website for psychological therapy built with R
 
 ## Getting Started
 
-Visit the [Meshcare website](#) to get started. 
+Visit the [Meshcare website](https://meshcare-frontend-7te6dt4jpq-uc.a.run.app/) to get started. 
 
 ## Documentation
 
