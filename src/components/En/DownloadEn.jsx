@@ -12,7 +12,7 @@ export default function DownloadEn() {
 
     console.log(email);
 
-    fetch(`http://api:3200/api/waiting-list`, {
+    fetch(`${REACT_APP_BACKEND_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
